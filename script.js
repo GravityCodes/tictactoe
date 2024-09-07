@@ -76,22 +76,38 @@ function createPlayer (name, token) {
 
 // Display game to DOM
 const screenController = (function () {
-    const $gameboard = document.querySelector("#game-board-data");
-
+    const $startBtn = document.querySelector("#Start-Screen-btn"),
+          $createPlayerScreen = document.querySelector("#Create-Character-Screen"),
+          $addNameForm = document.querySelector("#create-player-form"),
+          $playingScreen = document.querySelector("#Playing-Screen");
     
-
+    return {$startBtn, $createPlayerScreen,$addNameForm,$playingScreen}
 })();
 
 //game flow module
 
 const gameController = (function (){
     
-    
 
-    const createPlayers = () => {
-        
-        player1 = createPlayer(prompt("what is player 1's name?"), "X");
-        player2 = createPlayer(prompt("what is player 2's name?"), "O");
+    const setUpGame = () => {
+
+        //Start Screen
+        screenController.$startBtn.addEventListener('click', (e) =>
+        {
+            setTimeout(e.target.parentElement.className = "disable", 1000);
+            screenController.$createPlayerScreen.className = "";
+        });
+
+        screenController.$addNameForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            player1 = createPlayer(e.target[0].value);
+            player2 = createPlayer(e.target[1].value);
+
+            setTimeout(screenController.$createPlayerScreen.className = "disable", 1000);
+            screenController.$playingScreen.className = "";
+
+        });
 
         return {player1, player2}
     }
@@ -142,8 +158,9 @@ const gameController = (function (){
 
     const restartGame = () => createPlayers();
 
-    return {createPlayers, startGame, playAgain, restartGame}
+    return {setUpGame, startGame, playAgain, restartGame}
 })();
 
 
 
+gameController.setUpGame();

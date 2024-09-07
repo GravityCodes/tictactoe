@@ -103,8 +103,7 @@ body {
 
 
 h1 {
-    font-family: agent_orangeregular;
-    font-size: 5em;
+    font-size: 3em;
     color: var(--c-primary);
 }
 
@@ -134,8 +133,8 @@ h1 > span {
 }
 
 #Start-Screen-btn {
-    font-size: 3em;
-    padding: 1.5rem;
+    font-size: 1em;
+    padding: 0.5rem 2rem;
 }
 
 #Start-Screen-btn:hover,
