@@ -74,6 +74,14 @@ function createPlayer (name, token) {
 
 }
 
+// Display game to DOM
+const screenController = (function () {
+    const $gameboard = document.querySelector("#game-board-data");
+
+    
+
+})();
+
 //game flow module
 
 const gameController = (function (){
@@ -138,6 +146,4 @@ const gameController = (function (){
 })();
 
 
-const displayScreen = (function () {
-    
-})();
+

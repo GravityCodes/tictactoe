@@ -68,6 +68,15 @@ p {
 
 }
 
+@font-face {
+    font-family: 'soraregular';
+    src: url('./fonts/sora-variablefont_wght-webfont.woff2') format('woff2'),
+         url('./fonts/sora-variablefont_wght-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 .disable {
     display: none !important;
 }
@@ -75,9 +84,14 @@ p {
 :root {
     --c-background: #2B303A;
     --c-primary: #D64933;
+    --c-primary-dark: #8c2616;
+    --c-primary-light: #f36a55;
     --c-secondary: #92DCE5;
+    --c-secondary-dark:#578a91;
+    --c-secondary-light: #b4eef5;
     --c-background-accent: #39404d;
-    --c-text: #EEE5E9;
+    --c-background-accent2: #556074;
+    --c-text: #d8dbe0;
 }
 
 body {
@@ -98,31 +112,190 @@ h1 > span {
     color: var(--c-secondary);
 }
 
-#Start-Screen {
+#Start-Screen, 
+#Create-Character-Screen {
     height: 50%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+
 }
 
-button {
+#Start-Screen-btn, 
+#Create-Player-Submit-Btn {
+    cursor: pointer;
+    border-radius: 10px;
+    color: var(--c-background);
+    background-color: var(--c-primary);
+    border: none;
+    box-shadow: inset 0px -4px 1px var(--c-primary-dark);
+    transition: all 0.2s;
+}
+
+#Start-Screen-btn {
     font-size: 3em;
     padding: 1.5rem;
-    border-radius: 10px;
-    color: var(--c-secondary);
-    background-color: var(--c-background-accent);
-    border: none;
-    cursor: pointer;
-    position: relative;
-    box-shadow: 2px 2px 2px black;
-    transition: color 0.5s, background-color 0.5s, box-shadow 0.1s;
 }
 
-button:hover  {
+#Start-Screen-btn:hover,
+#Create-Player-Submit-Btn:hover  {
+    background-color: var(--c-secondary);
+    box-shadow: inset 0px -4px 1px var(--c-secondary-dark); 
+}
+
+#Start-Screen-btn:active,
+#Create-Player-Submit-Btn:active {
+    box-shadow: none;
+    transform: translateY(2px);
+}
+
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    color: var(--c-text);
+    font-size: 1.5em;
+    background-color: var(--c-background-accent);
+    
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgb(32, 32, 32);
+    padding: 20px;
+    gap: 20px;
+
+}
+
+form > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+form  > h2 {
+    margin-bottom: 30px;
+}
+
+input {
+    border-radius: 15px;
+    padding: 5px;
+    border: 2px solid var(--c-background-accent2);
+    outline: none;
+    background-color: var(--c-background-accent2);
+}
+
+.player1 {
     color: var(--c-primary);
 }
 
-button:active {
-    box-shadow:inset 2px 2px 2px black;
+.player1:focus{
+    border-color: var(--c-primary);
+}
+
+.player2 {
+    color: var(--c-secondary);
+}
+
+.player2:focus {
+    border-color: var(--c-secondary);
+}
+
+#Create-Player-Submit-Btn {
+    margin-top: 40px;
+    padding: 10px;
+}
+
+
+
+h2 {
+    color: var(--c-text);
+}
+
+#Playing-Screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+header{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+#game-board {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    margin-top: 40px;
+}
+
+.logo{
+    color: var(--c-primary);
+}
+
+.logo > span {
+    color: var(--c-secondary);
+}
+
+#game-board-svg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+.game-board-svg-path {
+    stroke: var(--c-background-accent2);
+    stroke-width: 6;
+}
+
+table {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+td {
+    position: relative;
+}
+
+.x {
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    position: absolute;
+    transform: translateY(-65px);
+    fill: var(--c-primary);
+    stroke: var(--c-primary);
+    stroke-width: 40px;
+    display: none;
+}
+
+.x-outline {
+    stroke: var(--c-primary);
+}
+
+td[data-player-turn="player1"]:hover .x {
+    display: block;
+    fill: var(--c-background);
+    stroke: var(--c-background);
+}
+
+.o {
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    position: absolute;
+    transform: translateY(-65px);
+    stroke: var(--c-secondary);
+    stroke-width: 100px;
+    position: absolute;
+    display: none;
+}
+
+.o-outline {
+    stroke: var(--c-secondary);
 }
