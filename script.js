@@ -53,7 +53,14 @@ const GameBoard = (function (){
         } 
     }
 
-    return {getBoard, placeToken, clearBoard, checkForWinner}
+    const checkForTie = () => {
+        if(!board.includes("")){
+            GameBoard.clearBoard();
+            return true;
+        }
+    }
+
+    return {getBoard, placeToken, clearBoard, checkForWinner, checkForTie}
 })();
 
 function CreatePlayer (name, token, id) {
@@ -116,6 +123,10 @@ const GameController = (function () {
                 Players.getInactivePlayer().addLoss();
                 //$dialog.children[0].textContent = `${activePlayer.name} has won!`;
                 $winner.textContent = `${activePlayer.name} has won!`;
+                $dialog.showModal();
+            }
+            else if(GameBoard.checkForTie()) {
+                $winner.textContent = `It's a Draw!`;
                 $dialog.showModal();
             }
             Players.switchActivePlayers();   
