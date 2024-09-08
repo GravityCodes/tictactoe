@@ -276,13 +276,6 @@ td {
 .x-outline {
     stroke: var(--c-primary);
 }
-
-td[data-player-turn="player1"]:hover .x {
-    display: block;
-    fill: var(--c-background);
-    stroke: var(--c-background);
-}
-
 .o {
     height: 100%;
     width: 100%;
@@ -290,11 +283,31 @@ td[data-player-turn="player1"]:hover .x {
     position: absolute;
     transform: translateY(-65px);
     stroke: var(--c-secondary);
-    stroke-width: 100px;
+    stroke-width: 60px;
     position: absolute;
     display: none;
 }
 
 .o-outline {
     stroke: var(--c-secondary);
+}
+td[data-player-turn="player1"][data-value=""]:hover .x {
+    display: block;
+    fill: var(--c-background);
+    stroke: var(--c-background);
+}
+
+td[data-player-turn="player2"][data-value=""]:hover .o {
+    display: block;
+    fill: var(--c-background);
+    stroke: var(--c-background);
+}
+
+
+td[data-value="x"] .x {
+    display: block;
+}
+
+td[data-value="o"] .o {
+    display: block;
 }
