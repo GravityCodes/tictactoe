@@ -95,10 +95,11 @@ const Players = (function () {
         activePlayer = activePlayer === players[0] ? players[1] : players[0];
         
     }
+    const getPlayers = () => players;
 
     const getInactivePlayer = () => inactivePlayer;
 
-    return{addPlayers, getActivePlayer, switchActivePlayers, getInactivePlayer};
+    return{addPlayers, getActivePlayer, switchActivePlayers, getInactivePlayer, getPlayers};
 
 })();
 
@@ -132,11 +133,24 @@ function ScreenController () {
         $addNameForm = document.querySelector("#create-player-form"),
         $playingScreen = document.querySelector("#Playing-Screen"),
         $cells = document.querySelectorAll("td");
+        $display = document.querySelector("#display");
+    
+    let player1Screen = $display.children[0];
+    let player2Screen = $display.children[2];
+    let mainDisplay = $display.children[1];
 
     const updateScreen = () => {
         for(let i=0; i < 9; i++) {
             $cells[i].dataset.value = GameBoard.getBoard()[i];
         }
+
+
+        player1Screen.children[0].textContent = Players.getPlayers()[0].name;
+        player2Screen.children[0].textContent = Players.getPlayers()[1].name;
+        mainDisplay.textContent = `${Players.getActivePlayer().name}'s turn`
+        player1Screen.children[1].textContent = Players.getPlayers()[0].getWin();
+        player2Screen.children[1].textContent = Players.getPlayers()[1].getWin();
+
     }
 
     function goToCreatePlayerScreen (e) {
@@ -153,6 +167,7 @@ function ScreenController () {
         Players.addPlayers(e.srcElement[0].value, e.srcElement[1].value);
         $createPlayerScreen.classList.add("disable");
         $playingScreen.classList.remove("disable");
+        updateScreen();
     }
     $addNameForm.addEventListener("submit", addPlayersToPlayers);
 
