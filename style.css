@@ -369,3 +369,49 @@ td[data-value="o"] .o {
 .score {
     font-size: 2em;
 }
+
+
+dialog {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);   
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+dialog form {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#play-again svg path {
+    fill: var(--c-primary);
+}
+
+#play-again svg {
+    background-color: var(--c-background);
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: inset 0px 2px 1px var(--c-background-accent2);
+}
+
+
+#restart {
+    background-color: var(--c-background);
+    border-radius: 10px;
+    height: 113px;
+    width: 113px;
+    text-align: center;
+    padding-top: 40px;
+    cursor: pointer;
+    color: var(--c-secondary);
+    box-shadow: inset 0px 2px 1px var(--c-background-accent2);
+}
+
+#restart:active, #play-again svg:active {
+    box-shadow: none;
+}

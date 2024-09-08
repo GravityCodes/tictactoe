@@ -114,6 +114,9 @@ const GameController = (function () {
                 GameBoard.clearBoard();
                 activePlayer.addWin();
                 Players.getInactivePlayer().addLoss();
+                //$dialog.children[0].textContent = `${activePlayer.name} has won!`;
+                $winner.textContent = `${activePlayer.name} has won!`;
+                $dialog.showModal();
             }
             Players.switchActivePlayers();   
         }
@@ -134,7 +137,11 @@ function ScreenController () {
         $playingScreen = document.querySelector("#Playing-Screen"),
         $cells = document.querySelectorAll("td");
         $display = document.querySelector("#display");
-    
+        $dialog = document.querySelector("dialog");
+        $playAgain = document.querySelector("#play-again");
+        $restartGame = document.querySelector("#restart");
+        $winner = document.querySelector("#winner");
+
     let player1Screen = $display.children[0];
     let player2Screen = $display.children[2];
     let mainDisplay = $display.children[1];
@@ -177,7 +184,6 @@ function ScreenController () {
         })
     }
     function addTokenToScreen (cell) {
-        //cell.dataset.value = Players.getActivePlayer().token;
         
         GameController.playRound(cell.dataset.index, Players.getActivePlayer());
         changeTurn();
@@ -188,6 +194,17 @@ function ScreenController () {
         cell.addEventListener('click', () => addTokenToScreen(cell));
     })
 
+    function restartGame () {
+        $dialog.close();
+        $playingScreen.classList.add("disable");
+        $createPlayerScreen.classList.remove("disable");
+    }
+    $restartGame.addEventListener('click', restartGame);
+
+    function playAgain () {
+        $dialog.close();
+    }
+    $playAgain.addEventListener('click', playAgain);
 
 }
 
